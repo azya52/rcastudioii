@@ -101,12 +101,12 @@ mBtmDigits = RAM+88
 mBtmHorizonStart = RAM+128
 mBtmHorizonEnd = RAM+255
 
-		.org 100h
+	.org 100h
 start:
-		sex r2               ; 0066:e2        ; Make space for INP command
-		dec r2               ; 0067:22        ; 
-		inp 1                ; 0068:69        ; INP1 turns video on
-		inc r2               ; 0069:12        ; Fix Stack
+		sex r2
+		dec r2 
+		inp 1		; turns video on
+		inc r2
 		;disable interrupt and set X = 2, P = 3
 		sex r3
 		dis
