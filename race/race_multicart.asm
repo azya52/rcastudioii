@@ -1,6 +1,6 @@
 	.org	000h
-	.include "1802.inc"                   ; Include the R0-R15 definitions
-RAM  = 0800h                               ; System/Data memory page
+	.include "1802.inc"               ; Include the R0-R15 definitions
+RAM  = 0800h                              ; System/Data memory page
 RAMStack = RAM+BFh                        ; Initial stack value
 
 Reset:
@@ -12,39 +12,39 @@ Reset:
 	        plo r1               ; 
 	        ldi RAMStack & 255   ; R2.Low = Stack Base
 	        plo r2               ; 
-			ldi start / 256		 ; R3.High = main
+		ldi start / 256      ; R3.High = main
 	        phi r3               ; 
-	        ldi start & 255   	 ; R3.Low = main
+	        ldi start & 255      ; R3.Low = main
 	        phi r3               ; 
-			sep r3               ; ; Go to main
+		sep r3       ; Go to start
 _return:
-			ldxa
-			ret
+		ldxa
+		ret
 VideoInt:
-			dec r2
-			sav
-			dec r2
-			str r2
-			nop
-			nop
-			nop
-			ldi 00
-			phi r0
-			ldi 00
-			plo r0
+		dec r2
+		sav
+		dec r2
+		str r2
+		nop
+		nop
+		nop
+		ldi 00
+		phi r0
+		ldi 00
+		plo r0
 _loop:		glo r0
-			sex r2
-			sex r2
-			dec r0
-			plo r0
-			sex r2
-			dec r0
-			plo r0
-			sex r2
-			dec r0
-			plo r0
-			bn1 _loop
-			br _return
+		sex r2
+		sex r2
+		dec r0
+		plo r0
+		sex r2
+		dec r0
+		plo r0
+		sex r2
+		dec r0
+		plo r0
+		bn1 _loop
+		br _return
 			
 
 MAX_SEGMENT_Y = 27	;up to 31
